@@ -54,10 +54,9 @@ class RouteServiceProvider extends ServiceProvider
     /**
      * Define the routes for the application.
      *
-     * @param  \Illuminate\Routing\Router  $router
      * @return void
      */
-    public function map(Router $router)
+    public function map()
     {
         $config = $this->app['config']['optimus.components'];
 
@@ -90,7 +89,7 @@ class RouteServiceProvider extends ServiceProvider
                         continue;
                     }
 
-                    $router->group([
+                    app('router')->group([
                         'middleware' => $protected ? $middleware : [],
                         'namespace'  => $namespace,
                     ], function ($router) use ($path) {
